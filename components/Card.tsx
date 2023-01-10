@@ -14,7 +14,7 @@ export default function PostCard({post}) {
     return (
         <Grid item xs={12} md={6} lg={4} key={post.pk}>
             <Card>
-                <CardActionArea>
+                <CardActionArea href={`/post/${post.pk}`}>
                     <CardMedia sx={{ minHeight: 250, position: 'relative' }}>
                             <Image 
                                 src={`http://catstagram.lofty.codes/media/${post.image}`}

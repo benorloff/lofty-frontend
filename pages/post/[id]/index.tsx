@@ -16,17 +16,24 @@ export default function PostPage() {
 
     return (
         <div style={{ marginLeft: 25 }}>
-            <img width='150' src={`http://catstagram.lofty.codes/media/${post.image}`} />
-            <div>PK: {post.pk}</div>
-            <div>Name: {post.name}</div>
-            <div>Created: {post.timestamp_created}</div>
-            <div>Updated: {post.timestamp_updated}</div>
-            <div>Comments ({post.comments.length}):</div>
-            <ul>
-                { post.comments.map((c) => (
-                    <li key={c.pk}>{c.text}</li>
-                ))}
-            </ul>
+            { post ? ( 
+                <>
+                    <img width='150' src={`http://catstagram.lofty.codes/media/${post.image}`} />
+                    <div>PK: {post.pk}</div>
+                    <div>Name: {post.name}</div>
+                    <div>Created: {post.timestamp_created}</div>
+                    <div>Updated: {post.timestamp_updated}</div>
+                    <div>Comments ({post.comments.length}):</div>
+                    <ul>
+                        { post.comments.map((c) => (
+                            <li key={c.pk}>{c.text}</li>
+                        ))}
+                    </ul>
+                </>
+            ) : (
+                <p>No post found</p>
+            )}
+            
         </div>
     )
 }
