@@ -23,6 +23,8 @@ export default function Feed() {
     if (error) return <p>Loading failed...</p>;
     if (!data) return <h1>Loading...</h1>;
 
+    // Change grid to masonry??
+
     return (
         <Grid container spacing={2}>
             { data && 
@@ -37,7 +39,7 @@ export default function Feed() {
                                     alt={post.name}
                                 />
                                 <CardContent>
-                                    <Typography variant="body" component="div">
+                                    <Typography variant="body2" component="div">
                                         {post.name}
                                     </Typography>
                                 </CardContent>
