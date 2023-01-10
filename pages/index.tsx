@@ -5,13 +5,14 @@ import styles from '../styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-import fetch from 'unfetch'
-
-import useSWR, { Key, Fetcher } from 'swr'
-
-
+import useSWR from 'swr'
 
 export default function Home() {
+
+  const url = 'http://catstagram.lofty.codes/api/posts/'
+  const fetcher = async (url: string) => fetch(url).then(res => res.json())
+  const { data, error } = useSWR(url, fetcher);
+
   return (
     <>
       <Head>
@@ -63,6 +64,16 @@ export default function Home() {
               priority
             />
           </div>
+        </div>
+
+        <div>
+          { data && 
+            data.map((post) => (
+              <div key={post.pk}>
+                {post.pk} {post.name}
+              </div>
+            ))
+          }
         </div>
 
         <div className={styles.grid}>
