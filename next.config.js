@@ -3,4 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'catstagram.lofty.codes',
+        port: '',
+        pathname: '/media/**',
+      },
+    ],
+  },
+}
