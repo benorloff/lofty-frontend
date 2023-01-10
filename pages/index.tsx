@@ -5,6 +5,12 @@ import styles from '../styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+import fetch from 'unfetch'
+
+import useSWR, { Key, Fetcher } from 'swr'
+
+
+
 export default function Home() {
   return (
     <>
