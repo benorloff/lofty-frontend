@@ -4,19 +4,11 @@ import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import { IconButton, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
 import { Info } from '@mui/icons-material'
+import Feed from '../components/Feed'
 
 const inter = Inter({ subsets: ['latin'] })
 
-import useSWR from 'swr'
-
 export default function Home() {
-
-  const url = 'http://catstagram.lofty.codes/api/posts/'
-  const fetcher = async (url: string) => fetch(url).then(res => res.json())
-  const { data, error } = useSWR(url, fetcher);
-
-  if (error) <p>Loading failed...</p>;
-  if (!data) <h1>Loading...</h1>;
 
   return (
     <>
@@ -71,43 +63,7 @@ export default function Home() {
           </div>
         </div>
 
-        <ImageList>
-          { data &&  
-            data.map((post) => (
-              <ImageListItem key={post.pk}>
-                <Image
-                  src={`http://catstagram.lofty.codes/media/${post.image}`}
-                  alt={post.name}
-                  // className={styles.vercelLogo}
-                  width={100}
-                  height={24}
-                  // priority
-                />
-                <ImageListItemBar 
-                  title={post.name}
-                  actionIcon={
-                    <IconButton
-                      sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                      aria-label={`info about ${post.name}`}
-                    >
-                      <Info />
-                    </IconButton>
-                  }
-                />
-              </ImageListItem>
-            ))
-          }
-        </ImageList>
-
-        <div>
-          { data && 
-            data.map((post) => (
-              <div key={post.pk}>
-                {post.pk} {post.name}
-              </div>
-            ))
-          }
-        </div>
+        <Feed />
 
         <div className={styles.grid}>
           <a
