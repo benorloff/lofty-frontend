@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { 
+    Container,
     Grid, 
     CardContent, 
     CardMedia, 
@@ -29,30 +30,32 @@ export default function Feed({ posts }) {
     // Change grid to masonry??
 
     return (
-        <Grid container spacing={2}>
-            { posts && 
-                posts.map((post) => (
-                    <PostCard post={post} key={post.pk}/>
-                    // <Grid item xs={12} md={6} lg={4} key={post.pk}>
-                    //     <Card>
-                    //         <CardActionArea>
-                    //             <CardMedia
-                    //                 component="img"
-                    //                 height="300"
-                    //                 image={`http://catstagram.lofty.codes/media/${post.image}`}
-                    //                 alt={post.name}
-                    //             />
-                    //             <CardContent>
-                    //                 <Typography variant="body2" component="div">
-                    //                     <Link href={`/post/${post.pk}`}>{post.pk}</Link>
-                    //                 </Typography>
-                    //             </CardContent>
-                    //         </CardActionArea>
-                    //     </Card>
-                    // </Grid>
-                    
-                ))
-            }
-        </Grid>
+        <Container maxWidth="lg" sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+                { posts && 
+                    posts.map((post) => (
+                        <PostCard post={post} key={post.pk}/>
+                        // <Grid item xs={12} md={6} lg={4} key={post.pk}>
+                        //     <Card>
+                        //         <CardActionArea>
+                        //             <CardMedia
+                        //                 component="img"
+                        //                 height="300"
+                        //                 image={`http://catstagram.lofty.codes/media/${post.image}`}
+                        //                 alt={post.name}
+                        //             />
+                        //             <CardContent>
+                        //                 <Typography variant="body2" component="div">
+                        //                     <Link href={`/post/${post.pk}`}>{post.pk}</Link>
+                        //                 </Typography>
+                        //             </CardContent>
+                        //         </CardActionArea>
+                        //     </Card>
+                        // </Grid>
+                        
+                    ))
+                }
+            </Grid>
+        </Container>
     )
 }
