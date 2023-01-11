@@ -28,7 +28,7 @@ export default function PostCard({post}) {
                     </CardMedia>
                     <CardContent>
                         <Typography variant="body2" component="div">
-                            <Link href={`/post/${post.pk}`}>{post.pk}</Link>
+                            {post.pk}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

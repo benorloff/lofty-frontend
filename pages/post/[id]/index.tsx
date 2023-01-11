@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useSWRConfig } from 'swr'
@@ -7,6 +8,8 @@ export default function PostPage() {
     const router = useRouter()
     const id = router.query.id as string
     const { cache } = useSWRConfig()
+
+    console.log(cache, '<-- cache')
 
     const cachedPosts = cache.get("http://catstagram.lofty.codes/api/posts/")
     console.log(cachedPosts, '<-- cachedPosts')
@@ -33,14 +36,19 @@ export default function PostPage() {
             ) : (
                 <p>No post found</p>
             )}
+            TEST
             
         </div>
     )
 }
 
-interface Cache<Data> {
-    get(key: string): Data | undefined
-    set(key: string, value: Data): void
-    delete(key: string): void
-    keys(): IterableIterator<string>
-}
+// interface Cache<Data> {
+//     get(key: string): Data | undefined
+//     set(key: string, value: Data): void
+//     delete(key: string): void
+//     keys(): IterableIterator<string>
+// }
+
+// interface Post<Object> {
+//     keys(): IterableIterator<string>
+// }

@@ -15,11 +15,13 @@ import { Info } from '@mui/icons-material'
 import PostCard  from './Card'
 import useSWR from 'swr'
 
-export default function Feed() {
+export default function Feed({ posts }) {
 
     const url = 'http://catstagram.lofty.codes/api/posts/'
     const fetcher = async (url: string) => fetch(url).then(res => res.json())
     const { data, error } = useSWR(url, fetcher);
+
+    console.log(data, '<-- data')
 
     if (error) return <p>Loading failed...</p>;
     if (!data) return <h1>Loading...</h1>;
@@ -28,9 +30,9 @@ export default function Feed() {
 
     return (
         <Grid container spacing={2}>
-            { data && 
-                data.map((post) => (
-                    <PostCard post={post} />
+            { posts && 
+                posts.map((post) => (
+                    <PostCard post={post} key={post.pk}/>
                     // <Grid item xs={12} md={6} lg={4} key={post.pk}>
                     //     <Card>
                     //         <CardActionArea>
