@@ -10,7 +10,8 @@ import {
     IconButton, 
     ImageList, 
     ImageListItem, 
-    ImageListItemBar 
+    ImageListItemBar, 
+    Skeleton
 } from '@mui/material'
 import { Info } from '@mui/icons-material'
 import PostCard  from './Card'
@@ -32,7 +33,7 @@ export default function Feed({ posts }) {
     return (
         <Container maxWidth="lg" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-                { posts && 
+                { posts ? ( 
                     posts.map((post) => (
                         <PostCard post={post} key={post.pk}/>
                         // <Grid item xs={12} md={6} lg={4} key={post.pk}>
@@ -54,6 +55,19 @@ export default function Feed({ posts }) {
                         // </Grid>
                         
                     ))
+                ) : (
+                    <>
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                        <Skeleton variant='rectangular' sx={{ bgcolor: '#333333' }} width={300} height={300} />
+                    </>
+                )
                 }
             </Grid>
         </Container>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import { Container, IconButton, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
+import { Container, Grid, Skeleton, IconButton, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
 import { Info } from '@mui/icons-material'
 import Feed from '../components/Feed'
 import useSWR, { useSWRConfig, preload, SWRConfig } from 'swr'
@@ -35,11 +35,14 @@ export default function Home() {
   // console.log(cache, '<-- cache from homepage')
 
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const getPostsFromAPI = async () => {
       const posts = await fetch('http://catstagram.lofty.codes/api/posts/').then((res) => res.json())
       setPosts(posts)
+      setLoading(false)
     }
     getPostsFromAPI()
   }, [])
@@ -54,7 +57,41 @@ export default function Home() {
         <link rel="preload" href='http://catstagram.lofty.codes/api/posts/' as="fetch" />
       </Head>
       <Header />
-      <Feed posts={posts}/>
+      { !loading ? (
+        <Feed posts={posts}/>
+      ) : (
+        <Container maxWidth="lg" sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} >
+              <Skeleton animation="wave" variant='rounded' sx={{ bgcolor: '#333333' }} width={'100%'} height={300} />
+            </Grid>
+          </Grid>
+        </Container>
+      )}
       <Footer />
     </>
   )
