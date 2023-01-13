@@ -29,23 +29,23 @@ const inter = Inter({ subsets: ['latin'] })
 //   }
 // }
 
-export default function Home() {
+export default function Home({ posts }) {
 
   // const { cache } = useSWRConfig()
   // console.log(cache, '<-- cache from homepage')
 
-  const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(false)
+  console.log(posts, '<-- posts')
 
-  useEffect(() => {
-    setLoading(true)
-    const getPostsFromAPI = async () => {
-      const posts = await fetch('http://catstagram.lofty.codes/api/posts/').then((res) => res.json())
-      setPosts(posts)
-      setLoading(false)
-    }
-    getPostsFromAPI()
-  }, [])
+  // useEffect(() => {
+  //   setLoading(true)
+  //   const getPostsFromAPI = async () => {
+  //     const posts = await fetch('http://catstagram.lofty.codes/api/posts/').then((res) => res.json())
+  //     setPosts(posts)
+  //     setLoading(false)
+  //   }
+  //   getPostsFromAPI()
+  // }, [])
 
   return (
     <>
@@ -96,3 +96,12 @@ export default function Home() {
     </>
   )
 }
+
+export async function getStaticProps() {
+  const posts = await fetch('http://catstagram.lofty.codes/api/posts/').then((res) => res.json())
+  return {
+    props: {
+      posts,
+    },
+  };
+};
