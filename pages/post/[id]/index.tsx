@@ -2,52 +2,10 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useSWRConfig } from 'swr'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { getAllPostIds } from '../../../lib/posts'
 import Header from '../../../components/Header'
 import { Container, Card, CardContent, Typography, Stack } from '@mui/material'
 
 export default function PostPage({ post }) {
-    const router = useRouter()
-    const id = router.query.id as string
-    // const { cache } = useSWRConfig()
-
-    // console.log(cache, '<-- cache')
-    // console.log(posts, '<-- posts')
-
-    // const cachedPosts = cache.get("http://catstagram.lofty.codes/api/posts/")
-    // console.log(cachedPosts, '<-- cachedPosts')
-
-    // const post = cachedPosts?.data?.find(({ pk }) => pk === Number(id))
-    // console.log(post, '<-- post')
-
-    // const [posts, setPosts] = useState([])
-    // const [post, setPost] = useState(null)
-    // const [loading, setLoading] = useState(true)
-
-    // useEffect(() => {
-    //     const getAllPosts = () => {
-    //         fetch('http://catstagram.lofty.codes/api/posts/')
-    //             .then((res) => res.json())
-    //             .then((data) => setPosts(data))
-    //     }
-    //     getAllPosts()
-    // }, [])
-
-    // useEffect(() => {
-    //     const getPost = () => {
-    //         const post = posts.find(({ pk }) => pk === Number(id))
-    //         setPost(post)
-    //     }
-    //     getPost()
-    //     setLoading(false)
-    // }, [posts])
-
-    // console.log(posts, '<-- posts from postpage')
-    // console.log(post, '<-- post from postpage')
-
-    // if (loading) return <h1>Loading...</h1>
 
     return (
         <>

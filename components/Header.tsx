@@ -7,6 +7,7 @@ import {
     Button
 } from "@mui/material";
 import UploadModal from "./UploadModal";
+import Link from "next/link";
 
 export default function Header() {
 
@@ -31,7 +32,7 @@ export default function Header() {
                             component="div"
                             sx={{ flexGrow: 1, ml: 1 }}
                         >
-                            Catstagram
+                            <Link href={'/'}>Catstagram</Link>
                         </Typography>
                         <Button 
                             variant="contained"
