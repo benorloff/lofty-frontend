@@ -34,7 +34,7 @@ export default function PostPage({ post }) {
                     <CardContent>
                         <Typography>Comments</Typography>
                         <Stack>
-                            { post.comments ? (
+                            { post.comments.length ? (
                                 post.comments.map((c) => (
                                     <div key={c.pk} >{c.text}</div>
                                 ))

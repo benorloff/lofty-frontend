@@ -52,7 +52,7 @@ export default function UploadModal ({ open, handleClose }) {
                 </Stack>
             </DialogContent>
             <DialogActions>
-                <Button>Cancel</Button>
+                <Button onClick={handleClose}>Cancel</Button>
                 <Button variant="contained">Upload</Button>
             </DialogActions>
         </Dialog>
