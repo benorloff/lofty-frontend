@@ -7,17 +7,48 @@ import {
     CardContent, 
     Typography, 
     Stack,
-    Divider,
     TextField,
     Button,
+    Box,
+    CircularProgress,
 } from '@mui/material'
 
 export default function PostPage({ post }) {
 
     const [newComment, setNewComment] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setNewComment(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        postComment({
+            text: newComment,
+            entry: Number(post.id)
+        })
+            .then((data) => {
+                console.log(data, '<-- comments api response')
+            })
+            .catch((error) => {
+                console.log(error, '<-- comments api error')
+            })
+        setLoading(false)
+        setNewComment('')
+    }
+
+    // Post the comment to the Lofty API
+    const postComment = async (data = {}) => {
+        const res = await fetch('http://catstagram.lofty.codes/api/comments/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        return res.json()
     }
 
     return (
@@ -63,9 +94,15 @@ export default function PostPage({ post }) {
                                 onChange={handleChange}
                                 sx={{ width: '100%', mb: 1 }}
                             />
-                            <Button variant='contained'>
+                            <Button 
+                                variant='contained'
+                                onClick={handleSubmit}
+                            >
                                 Submit
                             </Button>
+                            { loading && 
+                                <CircularProgress />
+                            }
                         </CardContent>
                     </Card>
                     {/* Comment feed */}
@@ -121,6 +158,7 @@ export async function getStaticProps({ params }) {
                 id,
                 ...postData,
             }
-        }
+        },
+        revalidate: 10,
     }
 }

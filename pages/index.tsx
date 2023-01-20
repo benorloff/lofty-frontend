@@ -11,7 +11,22 @@ import { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-export default function Home({ posts }) {
+// type Post = {
+//   pk: number,
+//   name: string,
+//   comments: Array<{
+//       pk: number,
+//       text: string,
+//       entry: number,
+//       timestamp_created: string,
+//       timestamp_updated: string,
+//   }>,
+//   image: string,
+//   timestamp_created: string,
+//   timestamp_updated: string,
+// }
+
+export default function Home({ posts: Post[] }) {
 
   // const [loading, setLoading] = useState(false)
 
