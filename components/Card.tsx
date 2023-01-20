@@ -8,6 +8,7 @@ import {
     CardContent,
     Typography, 
 } from '@mui/material'
+import { Comment } from '@mui/icons-material'
 
 export default function PostCard({post}) {
 
@@ -27,9 +28,20 @@ export default function PostCard({post}) {
                             />
                     </CardMedia>
                     <CardContent>
-                        <Typography variant="body2" component="div">
-                            {post.pk}
-                        </Typography>
+                        <Grid container>
+                            <Grid item xs={10}>
+                                <Typography variant="body2" component="div">
+                                    { post.name.length > 25 
+                                        ? (`${post.name.substring(0,25)}...`)
+                                        : (`${post.name}`)
+                                    }
+                                </Typography>
+                            </Grid>
+                            <Grid container xs={2} alignItems='center' justifyContent='flex-end'>
+                                <Comment></Comment>
+                                {post.comments.length}
+                            </Grid>
+                        </Grid>
                     </CardContent>
                 </CardActionArea>
             </Card>
