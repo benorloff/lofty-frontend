@@ -32,7 +32,7 @@ export default function PostPage({ post }) {
                 </div>
                 <Card>
                     <CardContent>
-                        <Typography>Comments</Typography>
+                        <Typography variant='h5'>Comments</Typography>
                         <Stack>
                             { post.comments.length ? (
                                 post.comments.map((c) => (
