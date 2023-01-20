@@ -16,6 +16,7 @@ import {
 export default function PostPage({ post }) {
 
     const [newComment, setNewComment] = useState('')
+    const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
@@ -30,10 +31,12 @@ export default function PostPage({ post }) {
             entry: Number(post.id)
         })
             .then((data) => {
-                console.log(data, '<-- comments api response')
+                console.log(data, '<-- comments api success')
+                setMessage('Success! Your comment has been posted.')
             })
             .catch((error) => {
                 console.log(error, '<-- comments api error')
+                setMessage('Uh oh! There was an error posting your comment.')
             })
         setLoading(false)
         setNewComment('')
@@ -100,8 +103,10 @@ export default function PostPage({ post }) {
                             >
                                 Submit
                             </Button>
-                            { loading && 
-                                <CircularProgress />
+                            { message && 
+                                <Typography>
+                                    {message}
+                                </Typography>
                             }
                         </CardContent>
                     </Card>
@@ -130,6 +135,7 @@ export default function PostPage({ post }) {
     )
 }
 
+// Statically pre-render all paths during build
 export async function getStaticPaths() {
     const posts = await fetch('http://catstagram.lofty.codes/api/posts/')
         .then((res) => res.json())
@@ -147,6 +153,8 @@ export async function getStaticPaths() {
 
 }
 
+// Statically pre-render props during build
+// Runs in the background and relavidates every 10 seconds
 export async function getStaticProps({ params }) {
     const id = params.id
     const posts = await fetch('http://catstagram.lofty.codes/api/posts/')
