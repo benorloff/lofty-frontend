@@ -1,11 +1,24 @@
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 import Image from 'next/image'
 import Header from '../../../components/Header'
-import { Container, Card, CardContent, Typography, Stack } from '@mui/material'
+import { 
+    Container, 
+    Card, 
+    CardContent, 
+    Typography, 
+    Stack,
+    Divider,
+    TextField,
+    Button,
+} from '@mui/material'
 
 export default function PostPage({ post }) {
+
+    const [newComment, setNewComment] = useState('')
+
+    const handleChange = (e) => {
+        setNewComment(e.target.value)
+    }
 
     return (
         <>
@@ -20,32 +33,61 @@ export default function PostPage({ post }) {
                             (max-width: 1200px) 50vw,
                             33vw"
                 /> */}
-                <div>
-                    { post ? ( 
-                        <>
-                            <img width='100%' src={`http://catstagram.lofty.codes/media/${post.image}`} />
-                        </>
-                    ) : (
-                        <p>No post found</p>
-                    )}
-                
-                </div>
-                <Card>
-                    <CardContent>
-                        <Typography variant='h5'>Comments</Typography>
-                        <Stack>
-                            { post.comments.length ? (
-                                post.comments.map((c) => (
-                                    <div key={c.pk} >{c.text}</div>
-                                ))
+                <Stack spacing={2}>
+                    {/* Post image */}
+                    <Card>
+                        <CardContent>
+                        <div>
+                            { post ? ( 
+                                <>
+                                    <img width='100%' src={`http://catstagram.lofty.codes/media/${post.image}`} />
+                                </>
                             ) : (
-                                'No comments yet.'
-                            )
+                                <p>No post found</p>
+                            )}
+                        
+                        </div>
+                        </CardContent>
+                    </Card>
+                    {/* Add a new comment */}
+                    <Card>
+                        <CardContent>
+                            <Typography variant='h5' sx={{ mb: 1 }}>
+                                Add Your Comment
+                            </Typography>
+                            <TextField
+                                required
+                                id="description"
+                                label="What are your thoughts?"
+                                value={newComment}
+                                onChange={handleChange}
+                                sx={{ width: '100%', mb: 1 }}
+                            />
+                            <Button variant='contained'>
+                                Submit
+                            </Button>
+                        </CardContent>
+                    </Card>
+                    {/* Comment feed */}
+                    <Card>
+                        <CardContent>
+                            <Typography variant='h5' sx={{ mb: 1 }}>
+                                Comments
+                            </Typography>
+                            <Stack spacing={1}>
+                                { post.comments.length ? (
+                                    post.comments.map((c) => (
+                                        <div key={c.pk} >{c.text}</div>
+                                    ))
+                                ) : (
+                                    'No comments yet.'
+                                )
 
-                            }
-                        </Stack>
-                    </CardContent>
-                </Card>
+                                }
+                            </Stack>
+                        </CardContent>
+                    </Card>
+                </Stack>
             </Container>
         </>
     )
