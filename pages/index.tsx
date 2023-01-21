@@ -26,7 +26,7 @@ import Footer from '../components/Footer'
 //   timestamp_updated: string,
 // }
 
-export default function Home({ posts: Post[] }) {
+export default function Home({ posts }) {
 
   // const [loading, setLoading] = useState(false)
 
