@@ -4,21 +4,27 @@ import {
     AppBar, 
     Toolbar, 
     Typography,
-    Button
+    Button,
+    IconButton,
+    Avatar,
 } from "@mui/material";
 import UploadModal from "./UploadModal";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header() {
 
-    const [open, setOpen] = useState(false)
+    const { data: session, status } = useSession()
+    const [modalOpen, setModalOpen] = useState(false)
 
-    const handleOpen = () => {
-        setOpen(true)
+    console.log(session, '<-- session data')
+
+    const handleModalOpen = () => {
+        setModalOpen(true)
     }
 
-    const handleClose = () => {
-        setOpen(false)
+    const handleModalClose = () => {
+        setModalOpen(false)
     }
 
 
@@ -34,16 +40,40 @@ export default function Header() {
                         >
                             <Link href={'/'}>Catstagram</Link>
                         </Typography>
-                        <Button 
-                            variant="contained"
-                            onClick={() => handleOpen()}
-                        >
-                            Add Photo
-                        </Button>
+                        {/* Get session status and display Log In/Log Out buttons */}
+                        { status === "authenticated" ? (
+                            <>
+                                <Button 
+                                    variant="contained"
+                                    onClick={() => handleModalOpen()}
+                                    sx={{ mr: 1 }}
+                                >
+                                    Add Photo
+                                </Button>
+                                <IconButton
+                                    sx={{ mr: 1 }}
+                                >
+                                    <Avatar alt={`${session?.user?.name}`} src={`${session?.user?.image}`} />
+                                </IconButton>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => signOut()}
+                                >
+                                    Log Out
+                                </Button>
+                            </>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                onClick={() => signIn()}
+                            >
+                                Log In
+                            </Button>
+                        )}
                     </Toolbar>
                 </Container>
             </AppBar>
-            <UploadModal open={open} handleClose={handleClose} />
+            <UploadModal open={modalOpen} handleClose={handleModalClose} />
         </>
     )
 }
