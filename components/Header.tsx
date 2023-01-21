@@ -17,8 +17,6 @@ export default function Header() {
     const { data: session, status } = useSession()
     const [modalOpen, setModalOpen] = useState(false)
 
-    console.log(session, '<-- session data')
-
     const handleModalOpen = () => {
         setModalOpen(true)
     }
@@ -26,7 +24,6 @@ export default function Header() {
     const handleModalClose = () => {
         setModalOpen(false)
     }
-
 
     return (
         <>
@@ -40,7 +37,7 @@ export default function Header() {
                         >
                             <Link href={'/'}>Catstagram</Link>
                         </Typography>
-                        {/* Get session status and display Log In/Log Out buttons */}
+                        {/* Get session status and display actions accordingly */}
                         { status === "authenticated" ? (
                             <>
                                 <Button 
