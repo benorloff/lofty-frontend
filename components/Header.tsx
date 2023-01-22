@@ -16,6 +16,8 @@ export default function Header() {
 
     const { data: session, status } = useSession()
     const [modalOpen, setModalOpen] = useState(false)
+    
+    console.log(session, '<-- session data')
 
     const handleModalOpen = () => {
         setModalOpen(true)

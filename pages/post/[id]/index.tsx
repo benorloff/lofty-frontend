@@ -98,7 +98,7 @@ export default function PostPage({ post }) {
                                 <TextField
                                     required
                                     id="description"
-                                    label="What are your thoughts?"
+                                    label={`What are your thoughts, ${session?.user?.name?.split(' ')[0]}?`}
                                     value={newComment}
                                     onChange={handleChange}
                                     sx={{ width: '100%', mb: 1 }}
