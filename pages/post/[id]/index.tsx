@@ -12,12 +12,13 @@ import {
     Box,
     CircularProgress,
 } from '@mui/material'
-
+import { AccountCircle } from '@mui/icons-material'
 export default function PostPage({ post }) {
 
     const [newComment, setNewComment] = useState('')
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
+    // const [comments, setComments] = useState([post.comments])
 
     const handleChange = (e) => {
         setNewComment(e.target.value)
@@ -119,7 +120,11 @@ export default function PostPage({ post }) {
                             <Stack spacing={1}>
                                 { post.comments.length ? (
                                     post.comments.map((c) => (
-                                        <div key={c.pk} >{c.text}</div>
+                                        <Stack direction="row" alignItems="center" spacing={2} key={c.pk}>
+                                            <AccountCircle />
+                                            <div>{c.text}</div>
+                                            <div>{new Date(c.timestamp_created).toLocaleDateString()}</div>
+                                        </Stack>
                                     ))
                                 ) : (
                                     'No comments yet.'
