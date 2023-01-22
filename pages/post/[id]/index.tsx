@@ -165,7 +165,7 @@ export async function getStaticPaths() {
 }
 
 // Statically pre-render props during build
-// Runs in the background and relavidates every 10 seconds
+// Runs in the background and revalidates every 10 seconds
 export async function getStaticProps({ params }) {
     const id = params.id
     const posts = await fetch('http://catstagram.lofty.codes/api/posts/')
