@@ -13,7 +13,11 @@ import {
     CircularProgress,
 } from '@mui/material'
 import { AccountCircle } from '@mui/icons-material'
+import { useSession } from "next-auth/react";
+
 export default function PostPage({ post }) {
+
+    const { data: session, status } = useSession()
 
     const [newComment, setNewComment] = useState('')
     const [message, setMessage] = useState('')
@@ -84,33 +88,35 @@ export default function PostPage({ post }) {
                         </div>
                         </CardContent>
                     </Card>
-                    {/* Add a new comment */}
-                    <Card>
-                        <CardContent>
-                            <Typography variant='h5' sx={{ mb: 1 }}>
-                                Add Your Comment
-                            </Typography>
-                            <TextField
-                                required
-                                id="description"
-                                label="What are your thoughts?"
-                                value={newComment}
-                                onChange={handleChange}
-                                sx={{ width: '100%', mb: 1 }}
-                            />
-                            <Button 
-                                variant='contained'
-                                onClick={handleSubmit}
-                            >
-                                Submit
-                            </Button>
-                            { message && 
-                                <Typography>
-                                    {message}
+                    {/* Add a new comment, restricted to authenticated users */}
+                    { status === "authenticated" && 
+                        <Card>
+                            <CardContent>
+                                <Typography variant='h5' sx={{ mb: 1 }}>
+                                    Add Your Comment
                                 </Typography>
-                            }
-                        </CardContent>
-                    </Card>
+                                <TextField
+                                    required
+                                    id="description"
+                                    label="What are your thoughts?"
+                                    value={newComment}
+                                    onChange={handleChange}
+                                    sx={{ width: '100%', mb: 1 }}
+                                />
+                                <Button 
+                                    variant='contained'
+                                    onClick={handleSubmit}
+                                >
+                                    Submit
+                                </Button>
+                                { message && 
+                                    <Typography>
+                                        {message}
+                                    </Typography>
+                                }
+                            </CardContent>
+                        </Card>
+                    }
                     {/* Comment feed */}
                     <Card>
                         <CardContent>
