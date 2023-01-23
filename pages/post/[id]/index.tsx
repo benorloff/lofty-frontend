@@ -25,6 +25,15 @@ export default function PostPage({ post }) {
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
 
+
+    const validateURL = async () => {
+        const res = await fetch(`http://catstagram.lofty.codes/media/${post.image}`)
+            .then((res) => console.log(res, '<-- post res'))
+    }
+
+    console.log(post)
+    validateURL()
+
     const handleChange = (e) => {
         setNewComment(e.target.value)
     }

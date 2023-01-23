@@ -81,6 +81,7 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const posts = await fetch('http://catstagram.lofty.codes/api/posts/').then((res) => res.json())
+  
   return {
     props: {
       posts,
