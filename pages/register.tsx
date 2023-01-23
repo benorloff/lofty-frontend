@@ -30,6 +30,7 @@ export default function Register () {
     }
 
     const handleSubmit = async () => {
+        // POST to Lofty API register user endpoint
         const res = await fetch('http://catstagram.lofty.codes/api/users/register/', {
             method: 'POST',
             headers: {
@@ -38,13 +39,14 @@ export default function Register () {
             body: JSON.stringify(input),
         })
 
+        // Handle error
         if ( !res.ok ) {
             setMessage('Uh oh! There was an error creating your account. Please try again.');
             return;
         }
 
+        // Handle success, redirect to sign in
         setMessage('Success! Your account has been created. Taking you to Sign In...') 
-
         setTimeout(() => {
             router.push('/api/auth/signin')
         }, 2000)
