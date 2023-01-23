@@ -27,7 +27,6 @@ export default function Register () {
             ...input,
             [e.target.name]: value
         })
-        console.log(input, '<-- input')
     }
 
     const handleSubmit = async () => {
@@ -41,12 +40,10 @@ export default function Register () {
 
         if ( !res.ok ) {
             setMessage('Uh oh! There was an error creating your account. Please try again.');
-            console.log(res, '<-- create account error')
             return;
         }
 
         setMessage('Success! Your account has been created. Taking you to Sign In...') 
-        console.log(res, '<-- create account res')
 
         setTimeout(() => {
             router.push('/api/auth/signin')
