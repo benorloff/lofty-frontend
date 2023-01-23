@@ -14,6 +14,7 @@ import {
 import { AccountCircle } from '@mui/icons-material'
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/router'
+import Footer from '../../../components/Footer';
 
 export default function PostPage({ post }) {
 
@@ -144,6 +145,7 @@ export default function PostPage({ post }) {
                     </Card>
                 </Stack>
             </Container>
+            <Footer />
         </>
     )
 }
