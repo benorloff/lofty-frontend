@@ -1,5 +1,4 @@
 import { 
-    Box, 
     Dialog, 
     DialogTitle, 
     DialogContent,
@@ -10,7 +9,7 @@ import {
     Typography,
     CircularProgress
 } from "@mui/material"
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/router"
 
 export default function UploadModal ({ open, handleClose }) {
@@ -41,7 +40,7 @@ export default function UploadModal ({ open, handleClose }) {
         formData.append('image', file)
 
         setMessage('Sending your cat on a journey.')
-        
+
         // Upload file to Lofty API
         const uploadFile = await fetch('http://catstagram.lofty.codes/api/posts/', {
             method: 'POST',
