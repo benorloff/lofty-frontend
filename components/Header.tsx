@@ -62,12 +62,20 @@ export default function Header() {
                                 </Button>
                             </>
                         ) : (
-                            <Button
-                                variant="contained"
-                                onClick={() => signIn()}
-                            >
-                                Log In
-                            </Button>
+                            <>
+                                <Link href="/register">
+                                    <Button variant="contained" sx={{ mr: 2 }}>
+                                        Sign Up
+                                    </Button>
+                                </Link>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => signIn()}
+                                >
+                                    Log In
+                                </Button>
+                            </>
+                            
                         )}
                     </Toolbar>
                 </Container>
