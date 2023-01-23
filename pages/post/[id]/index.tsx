@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { useState } from 'react'
 import Header from '../../../components/Header'
 import { 
     Container, 
@@ -14,15 +13,17 @@ import {
 } from '@mui/material'
 import { AccountCircle } from '@mui/icons-material'
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/router'
 
 export default function PostPage({ post }) {
 
     const { data: session, status } = useSession()
 
+    const router = useRouter()
+
     const [newComment, setNewComment] = useState('')
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
-    // const [comments, setComments] = useState([post.comments])
 
     const handleChange = (e) => {
         setNewComment(e.target.value)
@@ -45,6 +46,7 @@ export default function PostPage({ post }) {
             })
         setLoading(false)
         setNewComment('')
+        router.reload()
     }
 
     // Post the comment to the Lofty API
@@ -63,15 +65,6 @@ export default function PostPage({ post }) {
         <>
             <Header />
             <Container maxWidth="sm" sx={{ mt: 3 }}>
-                {/* <Image 
-                    src={`http://catstagram.lofty.codes/media/${post.image}`}
-                    alt={post.name}
-                    style={{ objectFit: 'contain'}}
-                    fill
-                    sizes="(max-width: 768px) 66vw,
-                            (max-width: 1200px) 50vw,
-                            33vw"
-                /> */}
                 <Stack spacing={2}>
                     {/* Post image */}
                     <Card>
