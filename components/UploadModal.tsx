@@ -54,11 +54,9 @@ export default function UploadModal ({ open, handleClose }) {
                     setLoading(false)
                     setMessage('')
                 }, 2000)
-                console.log(data, '<-- post api success')
             })
             .catch((error) => {
                 setMessage('Uh oh! There was problem sending your cat.')
-                console.log(error, '<-- post api error')
             })
         
         // Send user back to feed

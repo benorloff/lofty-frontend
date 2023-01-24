@@ -4,21 +4,6 @@ import Feed from '../components/Feed'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-// type Post = {
-//   pk: number,
-//   name: string,
-//   comments: Array<{
-//       pk: number,
-//       text: string,
-//       entry: number,
-//       timestamp_created: string,
-//       timestamp_updated: string,
-//   }>,
-//   image: string,
-//   timestamp_created: string,
-//   timestamp_updated: string,
-// }
-
 export default function Home({ posts }) {
 
   return (
