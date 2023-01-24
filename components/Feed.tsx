@@ -19,6 +19,7 @@ export default function Feed({ posts }) {
     // Constrain posts to the current count
     const displayedPosts = sortedPosts.slice(0, postCount)
 
+    // Increase the postCount by 9 when Load More is clicked
     const handleLoadMoreClick = () => {
         setPostCount((prevValue) => prevValue + 9)
     }
@@ -31,6 +32,7 @@ export default function Feed({ posts }) {
                 ))
                 }
             </Grid>
+            {/* Only show Load More if there are more posts to load */}
             { postCount < sortedPosts.length && 
                 <Grid 
                     container 

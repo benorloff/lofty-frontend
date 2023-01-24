@@ -1,13 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { GetStaticProps } from 'next'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
-import { Container, Grid, Skeleton, IconButton, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
-import { Info } from '@mui/icons-material'
+import { Container, Grid, Skeleton } from '@mui/material'
 import Feed from '../components/Feed'
-import useSWR, { useSWRConfig, preload, SWRConfig } from 'swr'
-import { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -27,8 +20,6 @@ import Footer from '../components/Footer'
 // }
 
 export default function Home({ posts }) {
-
-  // const [loading, setLoading] = useState(false)
 
   return (
     <>

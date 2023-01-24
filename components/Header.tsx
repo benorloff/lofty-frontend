@@ -14,11 +14,11 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header() {
 
+    // Get session data from NextAuth
     const { data: session, status } = useSession()
+    
     const [modalOpen, setModalOpen] = useState(false)
     
-    console.log(session, '<-- session data')
-
     const handleModalOpen = () => {
         setModalOpen(true)
     }

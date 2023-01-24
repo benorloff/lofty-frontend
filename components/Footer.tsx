@@ -1,5 +1,4 @@
 import { Container, Grid, Typography } from "@mui/material"
-import Link from "next/link"
 
 export default function Footer () {
     return (
