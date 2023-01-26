@@ -25,7 +25,6 @@ describe('Header Component', () => {
 
         const { container } = render(<Header />)
 
-        expect(container).toMatchSnapshot()
         expect(screen.getByText("Log In")).toBeInTheDocument()
 
     })

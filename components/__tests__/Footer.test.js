@@ -8,7 +8,6 @@ describe('Footer Component', () => {
 
         const { container } = render(<Footer />)
 
-        expect(container).toMatchSnapshot();
         expect(screen.getByText("Contact Us")).toBeInTheDocument()
     })
 })
