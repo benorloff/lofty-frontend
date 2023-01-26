@@ -57,6 +57,7 @@ export default function Header() {
                                 <Button
                                     variant="contained"
                                     onClick={() => signOut()}
+                                    name="Sign Out"
                                 >
                                     Log Out
                                 </Button>
@@ -71,6 +72,7 @@ export default function Header() {
                                 <Button
                                     variant="contained"
                                     onClick={() => signIn()}
+                                    name="Sign In"
                                 >
                                     Log In
                                 </Button>
