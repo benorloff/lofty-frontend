@@ -9,7 +9,16 @@ import {
 } from '@mui/material'
 import { Comment } from '@mui/icons-material'
 
-export default function PostCard({post}) {
+type Post = {
+    pk: string;
+    name: string;
+    comments: [];
+    image: string;
+    timestamp_created: string;
+    timestamp_updated: string;
+}
+
+export default function PostCard({post} : {post: Post}) {
 
     return (
         <Grid item xs={12} md={6} lg={4} key={post.pk}>
