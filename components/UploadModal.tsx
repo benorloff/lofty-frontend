@@ -25,7 +25,7 @@ export default function UploadModal ({ open, handleClose } : { open: any, handle
         setFile(e.target.files[0])
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDescription(e.target.value)
     }
 

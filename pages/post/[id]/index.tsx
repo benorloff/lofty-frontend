@@ -43,11 +43,11 @@ export default function PostPage({ post } : { post: Post }) {
     console.log(post)
     validateURL()
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewComment(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         setLoading(true)
         postComment({
@@ -162,7 +162,7 @@ export default function PostPage({ post } : { post: Post }) {
 export async function getStaticPaths() {
     const posts = await fetch('http://catstagram.lofty.codes/api/posts/')
         .then((res) => res.json())
-    const paths = posts.map((post) => {
+    const paths = posts.map((post: Post) => {
         return {
             params: {
                 id: post.pk.toString(),
