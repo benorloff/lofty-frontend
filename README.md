@@ -1,3 +1,7 @@
+## Visit the site
+
+[https://lofty-frontend.vercel.app/](https://lofty-frontend.vercel.app/)
+
 ## Running the project locally
 
 First, clone the repo:
