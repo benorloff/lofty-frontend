@@ -1,31 +1,32 @@
-import Header from '../Header';
-import { render, screen } from "@testing-library/react";
-import 
+import Header from '../Header'
+import { render, screen } from "@testing-library/react"
+import "@testing-library/jest-dom"
 
-jest.mock('next-auth/react')
-import { useSession, signIn, signOut } from 'next-auth/react'
+jest.mock('next/router', () => require('next-router-mock'))
 
-const mockUseSession = useSession as jest.Mock
-;(signIn as jest.Mock).mockImplementation(() => jest.fn())
-;(signOut as jest.Mock).mockImplementation(() => jest.fn())
-
-describe('Header', () => {
-
-    const renderHeader = () => {
-        render(<Header />)
-
-        const signInButton = screen.queryByRole('button', {
-            name: 'Sign In',
-        })
-        const signOutButton = screen.queryByRole('button', {
-            name: 'Sign Out',
-        })
-
-        return {
-            signInButton,
-            signOutButton,
-        }
+jest.mock("next-auth/react", () => {
+    const originalModule = jest.requireActual('next-auth/react')
+    const mockSession = {
+        expires: new Date(Date.now() + 2 * 86400).toISOString(),
+        user: { username: "admin"}
     }
+    return {
+        __esModule: true,
+        ...originalModule,
+        useSession: jest.fn(() => {
+            return { data: mockSession, status: 'unauthenticated'}
+        })
+    }
+})
 
-    it()
+describe('Header Component', () => {
+
+    it('Show Log In when no session', async () => {
+
+        const { container } = render(<Header />)
+
+        expect(container).toMatchSnapshot()
+        expect(screen.getByText("Log In")).toBeInTheDocument()
+
+    })
 })

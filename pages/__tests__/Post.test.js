@@ -1,1 +1,0 @@
-import Post from '../post/[id]'

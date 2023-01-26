@@ -1,1 +1,0 @@
-import UploadModal from '../UploadModal';
