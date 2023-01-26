@@ -14,7 +14,17 @@ import { useSession } from "next-auth/react";
 import { useRouter } from 'next/router'
 import Footer from '../../../components/Footer';
 
-export default function PostPage({ post }) {
+type Post = {
+    id: string;
+    pk: number;
+    name: string;
+    comments: [];
+    image: string;
+    timestamp_created: string;
+    timestamp_updated: string;
+}
+
+export default function PostPage({ post } : { post: Post }) {
 
     const { data: session, status } = useSession()
 

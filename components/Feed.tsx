@@ -6,7 +6,16 @@ import {
 import PostCard  from './Card'
 import { useState } from 'react'
 
-export default function Feed({ posts }) {
+type Post = {
+    pk: number;
+    name: string;
+    comments: [];
+    image: string;
+    timestamp_created: string;
+    timestamp_updated: string;
+}
+
+export default function Feed({ posts } : { posts: Post[] }) {
 
     // Show 9 posts on initial render
     const [postCount, setPostCount] = useState(9)

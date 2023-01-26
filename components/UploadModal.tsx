@@ -12,11 +12,11 @@ import {
 import { useState } from "react"
 import { useRouter } from "next/router"
 
-export default function UploadModal ({ open, handleClose }) {
+export default function UploadModal ({ open, handleClose } : { open: any, handleClose: any}) {
 
     const router = useRouter()
 
-    const [file, setFile] = useState(null)
+    const [file, setFile] = useState()
     const [description, setDescription] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')

@@ -10,7 +10,7 @@ import {
 import { Comment } from '@mui/icons-material'
 
 type Post = {
-    pk: string;
+    pk: number;
     name: string;
     comments: [];
     image: string;
