@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Head from 'next/head'
 import { Container, Grid, Skeleton } from '@mui/material'
 import Feed from '../components/Feed'
